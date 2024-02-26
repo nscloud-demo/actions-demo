@@ -1,0 +1,22 @@
+name: upload & download artifacts
+
+on:
+  push:
+  workspace_dispatch:
+
+jobs:
+  upload-download:
+    runs-on: namespace-profile-default
+    steps:
+      - uses: actions/checkout@v4
+      - uses: namespace-actions/upload-artifact@64219b70a104bbc003e287e74f21e6dd7d76510c
+        with:
+          name: my-artifact
+          path: README.md
+
+      - uses: namespace-actions/download-artifact@09517132c6ff38e2e8a84636cd5c3ebe7cdefbf7
+        with:
+          name: my-artifact
+          path: dest
+
+      - run: cat ./dest/README.md
