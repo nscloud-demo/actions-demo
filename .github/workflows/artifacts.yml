@@ -2,7 +2,7 @@ name: upload & download artifacts
 
 on:
   push:
-  workspace_dispatch:
+  workflow_dispatch:
 
 jobs:
   upload-download:
