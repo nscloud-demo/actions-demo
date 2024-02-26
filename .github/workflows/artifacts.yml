@@ -12,12 +12,12 @@ jobs:
 
       - run: env
 
-      - uses: namespace-actions/upload-artifact@15026750e13282d20e199b0fe71331fa589bd0e0
+      - uses: namespace-actions/upload-artifact@5c987050c1201abeff4de601da313dda2eb08dd6
         with:
           name: my-artifact
           path: README.md
 
-      - uses: namespace-actions/download-artifact@356a59845e417fd91d2dd09249693b993afdf8d2
+      - uses: namespace-actions/download-artifact@2062ffc6652a9391c9cc97527408cd0c95599882
         with:
           name: my-artifact
           path: dest
