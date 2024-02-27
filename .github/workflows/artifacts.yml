@@ -5,7 +5,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  upload:
+  on-nscloud:
     runs-on: namespace-profile-default
     steps:
       - name: Download large file
@@ -17,11 +17,28 @@ jobs:
           name: 200mb
           path: 200MB.zip
 
-  download:
-    runs-on: namespace-profile-default
-    needs: upload
-    steps:
       - uses: namespace-actions/download-artifact@v0.0.1
+        with:
+          name: 200mb
+          path: dest
+
+      - name: Check
+        run: |
+          ls -la dest
+
+  on-github:
+    runs-on: namespace-profile-default
+    steps:
+      - name: Download large file
+        run: |
+          wget http://ipv4.download.thinkbroadband.com/200MB.zip
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: 200mb
+          path: 200MB.zip
+
+      - uses: actions/download-artifact@v4
         with:
           name: 200mb
           path: dest
