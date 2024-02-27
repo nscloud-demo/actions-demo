@@ -10,16 +10,16 @@ jobs:
     steps:
       - name: Download large file
         run: |
-          wget http://ipv4.download.thinkbroadband.com/20MB.zip
+          wget http://ipv4.download.thinkbroadband.com/200MB.zip
 
       - uses: namespace-actions/upload-artifact@ffdc6a9808728fabe0d7a021233eb39395ecb354
         with:
-          name: 20mb
-          path: 20MB.zip
+          name: 200mb
+          path: 200MB.zip
 
-      - uses: namespace-actions/download-artifact@ffdc6a9808728fabe0d7a021233eb39395ecb354
+      - uses: namespace-actions/download-artifact@v0.0.1
         with:
-          name: 20mb
+          name: 200mb
           path: dest
 
       - name: Check
