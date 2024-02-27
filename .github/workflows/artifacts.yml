@@ -5,21 +5,27 @@ on:
   workflow_dispatch:
 
 jobs:
-  upload-download:
+  upload:
     runs-on: namespace-profile-default
     steps:
-      - uses: actions/checkout@v4
+      - name: Download large file
+        run: |
+          wget http://ipv4.download.thinkbroadband.com/200MB.zip
 
-      - run: env
-
-      - uses: namespace-actions/upload-artifact@5c987050c1201abeff4de601da313dda2eb08dd6
+      - uses: namespace-actions/upload-artifact@v0.0.2
         with:
-          name: my-artifact
-          path: README.md
+          name: 200mb
+          path: 200MB.zip
 
-      - uses: namespace-actions/download-artifact@2062ffc6652a9391c9cc97527408cd0c95599882
+  download:
+    runs-on: namespace-profile-default
+    needs: upload
+    steps:
+      - uses: namespace-actions/download-artifact@v0.0.1
         with:
-          name: my-artifact
+          name: 200mb
           path: dest
 
-      - run: cat ./dest/README.md
+      - name: Check
+        run: |
+          ls -la dest
