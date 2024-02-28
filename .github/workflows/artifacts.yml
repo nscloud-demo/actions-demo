@@ -12,7 +12,7 @@ jobs:
         run: |
           wget http://ipv4.download.thinkbroadband.com/200MB.zip
 
-      - uses: namespace-actions/upload-artifact@ffdc6a9808728fabe0d7a021233eb39395ecb354
+      - uses: namespace-actions/upload-artifact@d618eebb4499ff5cb6b47bcb14d49070b7266d71
         with:
           name: 200mb
           path: 200MB.zip
