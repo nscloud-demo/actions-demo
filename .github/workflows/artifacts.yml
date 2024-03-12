@@ -17,7 +17,7 @@ jobs:
           name: 200mb
           path: 200MB.zip
 
-      - uses: namespace-actions/download-artifact@v0.0.1
+      - uses: namespace-actions/download-artifact@v0
         with:
           name: 200mb
           path: dest
@@ -46,3 +46,19 @@ jobs:
       - name: Check
         run: |
           ls -la dest
+
+  restore-job:
+    runs-on: namespace-profile-default
+    needs: on-nscloud
+    steps:
+      - name: Restore artifact from on-nscloud
+        uses: namespace-actions/download-artifact@v0
+        with:
+          name: 200mb
+          path: dest
+      - name: Verify artifact
+        run: |
+          ls -l dest
+      - name: Fail the job to test re-runs
+        run:
+          exit 1
