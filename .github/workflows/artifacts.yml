@@ -12,12 +12,12 @@ jobs:
         run: |
           wget http://ipv4.download.thinkbroadband.com/200MB.zip
 
-      - uses: namespace-actions/upload-artifact@216dce92c0199da69742f47753405368928a9983
+      - uses: namespace-actions/upload-artifact@1a0a67e1ac808fbca3936ed9b6407ce393ca8f0c
         with:
           name: 200mb
           path: 200MB.zip
 
-      - uses: namespace-actions/download-artifact@v0
+      - uses: namespace-actions/download-artifact@0667657d7a4d9cba5b1ff7095da00e8de2f0a3fc
         with:
           name: 200mb
           path: dest
@@ -52,7 +52,7 @@ jobs:
     needs: on-nscloud
     steps:
       - name: Restore artifact from on-nscloud
-        uses: namespace-actions/download-artifact@v0
+        uses: namespace-actions/download-artifact@0667657d7a4d9cba5b1ff7095da00e8de2f0a3fc
         with:
           name: 200mb
           path: dest
