@@ -71,7 +71,7 @@ jobs:
 
   restore-job-nscloud-stable:
     runs-on: namespace-profile-default
-    needs: on-nscloud
+    needs: on-nscloud-stable
     steps:
       - name: Restore artifact from on-nscloud
         uses: namespace-actions/download-artifact@v0
@@ -87,7 +87,7 @@ jobs:
 
   restore-job-nscloud-head:
     runs-on: namespace-profile-default
-    needs: on-nscloud
+    needs: on-nscloud-head
     steps:
       - name: Restore artifact from on-nscloud
         uses: namespace-actions/download-artifact@HEAD
