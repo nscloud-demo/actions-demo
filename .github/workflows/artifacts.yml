@@ -5,7 +5,28 @@ on:
   workflow_dispatch:
 
 jobs:
-  on-nscloud:
+  on-nscloud-stable:
+    runs-on: namespace-profile-default
+    steps:
+      - name: Download large file
+        run: |
+          wget http://ipv4.download.thinkbroadband.com/200MB.zip
+
+      - uses: namespace-actions/upload-artifact@v0
+        with:
+          name: 200mb
+          path: 200MB.zip
+
+      - uses: namespace-actions/download-artifact@v0
+        with:
+          name: 200mb
+          path: dest
+
+      - name: Check
+        run: |
+          ls -la dest
+
+  on-nscloud-head:
     runs-on: namespace-profile-default
     steps:
       - name: Download large file
@@ -16,6 +37,7 @@ jobs:
         with:
           name: 200mb
           path: 200MB.zip
+          retention-days: 1
 
       - uses: namespace-actions/download-artifact@HEAD
         with:
@@ -47,7 +69,23 @@ jobs:
         run: |
           ls -la dest
 
-  restore-job:
+  restore-job-nscloud-stable:
+    runs-on: namespace-profile-default
+    needs: on-nscloud
+    steps:
+      - name: Restore artifact from on-nscloud
+        uses: namespace-actions/download-artifact@v0
+        with:
+          name: 200mb
+          path: dest
+      - name: Verify artifact
+        run: |
+          ls -l dest
+      - name: Fail the job to test re-runs
+        run:
+          exit 1
+
+  restore-job-nscloud-head:
     runs-on: namespace-profile-default
     needs: on-nscloud
     steps:
