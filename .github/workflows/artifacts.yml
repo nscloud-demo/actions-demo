@@ -48,6 +48,27 @@ jobs:
         run: |
           ls -la dest
 
+  on-nscloud-v0.0.6:
+    runs-on: namespace-profile-default
+    steps:
+      - name: Download large file
+        run: |
+          wget http://ipv4.download.thinkbroadband.com/200MB.zip
+
+      - uses: namespace-actions/upload-artifact@v0.0.6
+        with:
+          name: 200mb
+          path: 200MB.zip
+
+      - uses: namespace-actions/download-artifact@v0.0.5
+        with:
+          name: 200mb
+          path: dest
+
+      - name: Check
+        run: |
+          ls -la dest
+
   on-github:
     runs-on: namespace-profile-default
     steps:
