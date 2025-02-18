@@ -35,13 +35,13 @@ jobs:
 
       - uses: namespace-actions/upload-artifact@HEAD
         with:
-          name: 200mb
+          name: 200mb-head
           path: 200MB.zip
           retention-days: 1
 
       - uses: namespace-actions/download-artifact@HEAD
         with:
-          name: 200mb
+          name: 200mb-head
           path: dest
 
       - name: Check
@@ -90,7 +90,7 @@ jobs:
       - name: Restore artifact from on-nscloud
         uses: namespace-actions/download-artifact@HEAD
         with:
-          name: 200mb
+          name: 200mb-head
           path: dest
       - name: Verify artifact
         run: |
