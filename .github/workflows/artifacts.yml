@@ -102,9 +102,7 @@ jobs:
       - name: Verify artifact
         run: |
           ls -l dest
-      - name: Fail the job to test re-runs
-        run:
-          exit 1
+      # Rerun using GUI button to test cross-attempt access.
 
   restore-job-nscloud-head:
     runs-on: namespace-profile-default
@@ -118,6 +116,4 @@ jobs:
       - name: Verify artifact
         run: |
           ls -l dest
-      - name: Fail the job to test re-runs
-        run:
-          exit 1
+      # Rerun using GUI button to test cross-attempt access.
