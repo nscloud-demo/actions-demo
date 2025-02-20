@@ -26,6 +26,20 @@ jobs:
         run: |
           ls -la dest
 
+  restore-job-nscloud-stable:
+    runs-on: namespace-profile-default
+    needs: on-nscloud-stable
+    steps:
+      - name: Restore artifact from on-nscloud
+        uses: namespace-actions/download-artifact@v0
+        with:
+          name: 200mb
+          path: dest
+      - name: Verify artifact
+        run: |
+          ls -l dest
+      # Rerun using GUI button to test cross-attempt access.
+
   on-nscloud-head:
     runs-on: namespace-profile-default
     steps:
@@ -48,6 +62,20 @@ jobs:
         run: |
           ls -la dest
 
+  restore-job-nscloud-head:
+    runs-on: namespace-profile-default
+    needs: on-nscloud-head
+    steps:
+      - name: Restore artifact from on-nscloud
+        uses: namespace-actions/download-artifact@HEAD
+        with:
+          name: 200mb-head
+          path: dest
+      - name: Verify artifact
+        run: |
+          ls -l dest
+      # Rerun using GUI button to test cross-attempt access.
+
   on-nscloud-old:
     runs-on: namespace-profile-default
     steps:
@@ -69,6 +97,55 @@ jobs:
         run: |
           ls -la dest
 
+  restore-job-nscloud-old:
+    runs-on: namespace-profile-default
+    needs: on-nscloud-old
+    steps:
+      - name: Restore artifact from on-nscloud
+        uses: namespace-actions/download-artifact@v0.0.9
+        with:
+          name: 200mb
+          path: dest
+      - name: Verify artifact
+        run: |
+          ls -l dest
+      # Rerun using GUI button to test cross-attempt access.
+
+  on-nscloud-v1:
+    runs-on: namespace-profile-default
+    steps:
+      - name: Download large file
+        run: |
+          wget http://ipv4.download.thinkbroadband.com/200MB.zip
+
+      - uses: namespace-actions/upload-artifact@v1
+        with:
+          name: 200mb
+          path: 200MB.zip
+
+      - uses: namespace-actions/download-artifact@v1
+        with:
+          name: 200mb
+          path: dest
+
+      - name: Check
+        run: |
+          ls -la dest
+
+  restore-job-nscloud-v1:
+    runs-on: namespace-profile-default
+    needs: on-nscloud-v1
+    steps:
+      - name: Restore artifact from on-nscloud
+        uses: namespace-actions/download-artifact@v0.0.9
+        with:
+          name: 200mb
+          path: dest
+      - name: Verify artifact
+        run: |
+          ls -l dest
+      # Rerun using GUI button to test cross-attempt access.
+
   on-github:
     runs-on: namespace-profile-default
     steps:
@@ -89,45 +166,3 @@ jobs:
       - name: Check
         run: |
           ls -la dest
-
-  restore-job-nscloud-stable:
-    runs-on: namespace-profile-default
-    needs: on-nscloud-stable
-    steps:
-      - name: Restore artifact from on-nscloud
-        uses: namespace-actions/download-artifact@v0
-        with:
-          name: 200mb
-          path: dest
-      - name: Verify artifact
-        run: |
-          ls -l dest
-      # Rerun using GUI button to test cross-attempt access.
-
-  restore-job-nscloud-head:
-    runs-on: namespace-profile-default
-    needs: on-nscloud-head
-    steps:
-      - name: Restore artifact from on-nscloud
-        uses: namespace-actions/download-artifact@HEAD
-        with:
-          name: 200mb-head
-          path: dest
-      - name: Verify artifact
-        run: |
-          ls -l dest
-      # Rerun using GUI button to test cross-attempt access.
-
-  restore-job-nscloud-old:
-    runs-on: namespace-profile-default
-    needs: on-nscloud-old
-    steps:
-      - name: Restore artifact from on-nscloud
-        uses: namespace-actions/download-artifact@v0.0.9
-        with:
-          name: 200mb
-          path: dest
-      - name: Verify artifact
-        run: |
-          ls -l dest
-      # Rerun using GUI button to test cross-attempt access.
