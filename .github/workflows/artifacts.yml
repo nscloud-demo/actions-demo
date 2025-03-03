@@ -8,18 +8,18 @@ jobs:
   on-nscloud-stable:
     runs-on: namespace-profile-default
     steps:
-      - name: Download large file
+      - name: Make artifact data
         run: |
-          wget http://ipv4.download.thinkbroadband.com/5MB.zip
+          echo "hello" > data.txt
 
       - uses: namespace-actions/upload-artifact@v0
         with:
-          name: 5mb
-          path: 5MB.zip
+          name: test-artifact
+          path: data.txt
 
       - uses: namespace-actions/download-artifact@v0
         with:
-          name: 5mb
+          name: test-artifact
           path: dest
 
       - name: Check
@@ -33,7 +33,7 @@ jobs:
       - name: Restore artifact from on-nscloud
         uses: namespace-actions/download-artifact@v0
         with:
-          name: 5mb
+          name: test-artifact
           path: dest
       - name: Verify artifact
         run: |
@@ -43,19 +43,19 @@ jobs:
   on-nscloud-head:
     runs-on: namespace-profile-default
     steps:
-      - name: Download large file
+      - name: Make artifact data
         run: |
-          wget http://ipv4.download.thinkbroadband.com/5MB.zip
+          echo "hello" > data.txt
 
       - uses: namespace-actions/upload-artifact@HEAD
         with:
-          name: 5mb-head
-          path: 5MB.zip
+          name: test-artifact-head
+          path: data.txt
           retention-days: 1
 
       - uses: namespace-actions/download-artifact@HEAD
         with:
-          name: 5mb-head
+          name: test-artifact-head
           path: dest
 
       - name: Check
@@ -69,7 +69,7 @@ jobs:
       - name: Restore artifact from on-nscloud
         uses: namespace-actions/download-artifact@HEAD
         with:
-          name: 5mb-head
+          name: test-artifact-head
           path: dest
       - name: Verify artifact
         run: |
@@ -79,18 +79,18 @@ jobs:
   on-nscloud-old:
     runs-on: namespace-profile-default
     steps:
-      - name: Download large file
+      - name: Make artifact data
         run: |
-          wget http://ipv4.download.thinkbroadband.com/5MB.zip
+          echo "hello" > data.txt
 
       - uses: namespace-actions/upload-artifact@v0.0.7
         with:
-          name: 5mb
-          path: 5MB.zip
+          name: test-artifact
+          path: data.txt
 
       - uses: namespace-actions/download-artifact@v0.0.9
         with:
-          name: 5mb
+          name: test-artifact
           path: dest
 
       - name: Check
@@ -104,7 +104,7 @@ jobs:
       - name: Restore artifact from on-nscloud
         uses: namespace-actions/download-artifact@v0.0.9
         with:
-          name: 5mb
+          name: test-artifact
           path: dest
       - name: Verify artifact
         run: |
@@ -114,18 +114,18 @@ jobs:
   on-nscloud-v1:
     runs-on: namespace-profile-default
     steps:
-      - name: Download large file
+      - name: Make artifact data
         run: |
-          wget http://ipv4.download.thinkbroadband.com/5MB.zip
+          echo "hello" > data.txt
 
       - uses: namespace-actions/upload-artifact@v1
         with:
-          name: 5mb
-          path: 5MB.zip
+          name: test-artifact
+          path: data.txt
 
       - uses: namespace-actions/download-artifact@v1
         with:
-          name: 5mb
+          name: test-artifact
           path: dest
 
       - name: Check
@@ -139,7 +139,7 @@ jobs:
       - name: Restore artifact from on-nscloud
         uses: namespace-actions/download-artifact@v0.0.9
         with:
-          name: 5mb
+          name: test-artifact
           path: dest
       - name: Verify artifact
         run: |
@@ -149,18 +149,18 @@ jobs:
   on-github:
     runs-on: namespace-profile-default
     steps:
-      - name: Download large file
+      - name: Make artifact data
         run: |
-          wget http://ipv4.download.thinkbroadband.com/5MB.zip
+          echo "hello" > data.txt
 
       - uses: actions/upload-artifact@v4
         with:
-          name: 5mb
-          path: 5MB.zip
+          name: test-artifact
+          path: data.txt
 
       - uses: actions/download-artifact@v4
         with:
-          name: 5mb
+          name: test-artifact
           path: dest
 
       - name: Check
