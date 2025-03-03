@@ -10,16 +10,16 @@ jobs:
     steps:
       - name: Download large file
         run: |
-          wget http://ipv4.download.thinkbroadband.com/200MB.zip
+          wget http://ipv4.download.thinkbroadband.com/5MB.zip
 
       - uses: namespace-actions/upload-artifact@v0
         with:
-          name: 200mb
-          path: 200MB.zip
+          name: 5mb
+          path: 5MB.zip
 
       - uses: namespace-actions/download-artifact@v0
         with:
-          name: 200mb
+          name: 5mb
           path: dest
 
       - name: Check
@@ -33,7 +33,7 @@ jobs:
       - name: Restore artifact from on-nscloud
         uses: namespace-actions/download-artifact@v0
         with:
-          name: 200mb
+          name: 5mb
           path: dest
       - name: Verify artifact
         run: |
@@ -45,17 +45,17 @@ jobs:
     steps:
       - name: Download large file
         run: |
-          wget http://ipv4.download.thinkbroadband.com/200MB.zip
+          wget http://ipv4.download.thinkbroadband.com/5MB.zip
 
       - uses: namespace-actions/upload-artifact@HEAD
         with:
-          name: 200mb-head
-          path: 200MB.zip
+          name: 5mb-head
+          path: 5MB.zip
           retention-days: 1
 
       - uses: namespace-actions/download-artifact@HEAD
         with:
-          name: 200mb-head
+          name: 5mb-head
           path: dest
 
       - name: Check
@@ -69,7 +69,7 @@ jobs:
       - name: Restore artifact from on-nscloud
         uses: namespace-actions/download-artifact@HEAD
         with:
-          name: 200mb-head
+          name: 5mb-head
           path: dest
       - name: Verify artifact
         run: |
@@ -81,16 +81,16 @@ jobs:
     steps:
       - name: Download large file
         run: |
-          wget http://ipv4.download.thinkbroadband.com/200MB.zip
+          wget http://ipv4.download.thinkbroadband.com/5MB.zip
 
       - uses: namespace-actions/upload-artifact@v0.0.7
         with:
-          name: 200mb
-          path: 200MB.zip
+          name: 5mb
+          path: 5MB.zip
 
       - uses: namespace-actions/download-artifact@v0.0.9
         with:
-          name: 200mb
+          name: 5mb
           path: dest
 
       - name: Check
@@ -104,7 +104,7 @@ jobs:
       - name: Restore artifact from on-nscloud
         uses: namespace-actions/download-artifact@v0.0.9
         with:
-          name: 200mb
+          name: 5mb
           path: dest
       - name: Verify artifact
         run: |
@@ -116,16 +116,16 @@ jobs:
     steps:
       - name: Download large file
         run: |
-          wget http://ipv4.download.thinkbroadband.com/200MB.zip
+          wget http://ipv4.download.thinkbroadband.com/5MB.zip
 
       - uses: namespace-actions/upload-artifact@v1
         with:
-          name: 200mb
-          path: 200MB.zip
+          name: 5mb
+          path: 5MB.zip
 
       - uses: namespace-actions/download-artifact@v1
         with:
-          name: 200mb
+          name: 5mb
           path: dest
 
       - name: Check
@@ -139,7 +139,7 @@ jobs:
       - name: Restore artifact from on-nscloud
         uses: namespace-actions/download-artifact@v0.0.9
         with:
-          name: 200mb
+          name: 5mb
           path: dest
       - name: Verify artifact
         run: |
@@ -151,16 +151,16 @@ jobs:
     steps:
       - name: Download large file
         run: |
-          wget http://ipv4.download.thinkbroadband.com/200MB.zip
+          wget http://ipv4.download.thinkbroadband.com/5MB.zip
 
       - uses: actions/upload-artifact@v4
         with:
-          name: 200mb
-          path: 200MB.zip
+          name: 5mb
+          path: 5MB.zip
 
       - uses: actions/download-artifact@v4
         with:
-          name: 200mb
+          name: 5mb
           path: dest
 
       - name: Check
