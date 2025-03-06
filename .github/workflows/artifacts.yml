@@ -8,14 +8,14 @@ jobs:
   on-nscloud-stable:
     runs-on: namespace-profile-default
     steps:
-      - name: Make artifact data
+      - name: Download large file
         run: |
-          echo "hello" > data.txt
+          wget http://ipv4.download.thinkbroadband.com/200MB.zip
 
       - uses: namespace-actions/upload-artifact@v0
         with:
           name: test-artifact
-          path: data.txt
+          path: 200MB.zip
 
       - uses: namespace-actions/download-artifact@v0
         with:
@@ -43,14 +43,14 @@ jobs:
   on-nscloud-head:
     runs-on: namespace-profile-default
     steps:
-      - name: Make artifact data
+      - name: Download large file
         run: |
-          echo "hello" > data.txt
+          wget http://ipv4.download.thinkbroadband.com/200MB.zip
 
       - uses: namespace-actions/upload-artifact@HEAD
         with:
           name: test-artifact-head
-          path: data.txt
+          path: 200MB.zip
           retention-days: 1
 
       - uses: namespace-actions/download-artifact@HEAD
@@ -79,14 +79,14 @@ jobs:
   on-nscloud-old:
     runs-on: namespace-profile-default
     steps:
-      - name: Make artifact data
+      - name: Download large file
         run: |
-          echo "hello" > data.txt
+          wget http://ipv4.download.thinkbroadband.com/200MB.zip
 
       - uses: namespace-actions/upload-artifact@v0.0.7
         with:
           name: test-artifact
-          path: data.txt
+          path: 200MB.zip
 
       - uses: namespace-actions/download-artifact@v0.0.9
         with:
@@ -114,14 +114,14 @@ jobs:
   on-nscloud-v1:
     runs-on: namespace-profile-default
     steps:
-      - name: Make artifact data
+      - name: Download large file
         run: |
-          echo "hello" > data.txt
+          wget http://ipv4.download.thinkbroadband.com/200MB.zip
 
       - uses: namespace-actions/upload-artifact@v1
         with:
           name: test-artifact
-          path: data.txt
+          path: 200MB.zip
 
       - uses: namespace-actions/download-artifact@v1
         with:
@@ -149,14 +149,14 @@ jobs:
   on-github:
     runs-on: namespace-profile-default
     steps:
-      - name: Make artifact data
+      - name: Download large file
         run: |
-          echo "hello" > data.txt
+          wget http://ipv4.download.thinkbroadband.com/200MB.zip
 
       - uses: actions/upload-artifact@v4
         with:
           name: test-artifact
-          path: data.txt
+          path: 200MB.zip
 
       - uses: actions/download-artifact@v4
         with:
